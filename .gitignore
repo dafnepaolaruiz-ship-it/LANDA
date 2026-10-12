@@ -1,0 +1,41 @@
+# Entornos virtuales
+.venv/
+venv/
+ENV/
+env/
+
+# Python y caché
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Bases de datos y archivos locales
+*.db
+*.sqlite
+*.sqlite3
+landa_dev.db
+
+# Secretos y variables de entorno reales
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Exportaciones y descargas con datos reales de asistentes
+*.xlsx
+*.csv
+e2e_out/
+exports/
+
+# IDEs y SO
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

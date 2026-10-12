@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Derechos ARCO y revocación · EXPO LANDA</title>
+  <meta name="description" content="Cómo ejercer tus derechos de acceso, rectificación, cancelación y oposición, y cómo retirar tu autorización de publicidad.">
+  <meta name="landa-api-base" content="">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="js-flag.js"></script>
+</head>
+<body>
+  <header class="site-header"><div class="wrap">
+    <a class="brand" href="index.html" aria-label="EXPO LANDA, volver al inicio">EXPO <span>LANDA</span></a>
+    <nav class="nav" aria-label="Principal"><a href="index.html">Volver al registro</a><a href="aviso-privacidad.html">Aviso de privacidad</a></nav>
+  </div></header>
+
+  <main class="doc">
+    <div class="wrap">
+      <p class="eyebrow">Tus datos, tus derechos</p>
+      <h1>Derechos <em>ARCO</em> y revocación</h1>
+      <p class="meta">Complementa el <a href="aviso-privacidad.html">Aviso de Privacidad integral</a>.</p>
+
+      <h2><span class="num">01</span>Ejercer tus derechos ARCO</h2>
+      <p>Puedes solicitar el <strong>acceso</strong> a tus datos, su <strong>rectificación</strong>, su <strong>cancelación</strong> u <strong>oponerte</strong> a su tratamiento. Envía tu solicitud a <strong data-legal="contact_email">…</strong> con:</p>
+      <ul>
+        <li>Tu nombre y un medio (correo o teléfono) para responderte.</li>
+        <li>Tu folio de registro, si lo conservas (facilita ubicar tu información).</li>
+        <li>Una descripción clara del derecho que quieres ejercer y de los datos involucrados.</li>
+        <li>Elementos que permitan acreditar tu identidad (por ejemplo, confirmar el correo y teléfono con los que te registraste). Si actúas por representación, el documento que la acredite.</li>
+      </ul>
+      <p>Daremos respuesta dentro de los plazos previstos por la legislación aplicable. Si procede la cancelación, eliminaremos o anonimizaremos tus datos, salvo los que deban conservarse por obligación legal. También puedes llamar al <span data-legal="contact_phone">449 348 1867</span> para solicitar orientación.</p>
+
+      <h2 id="revocacion"><span class="num">02</span>Retirar mi autorización de publicidad</h2>
+      <p>Si autorizaste recibir comunicaciones comerciales y ya no deseas recibirlas, escribe tu folio y el correo con el que te registraste. Tu registro y tu asistencia no se verán afectados.</p>
+      <form id="revoke-form" novalidate>
+        <div class="field">
+          <label for="r-folio">Folio</label>
+          <input type="text" id="r-folio" name="folio" placeholder="LANDA-XXXX-XXXX" autocomplete="off" maxlength="20" required>
+        </div>
+        <div class="field">
+          <label for="r-email">Correo electrónico del registro</label>
+          <input type="email" id="r-email" name="email" autocomplete="email" placeholder="nombre@correo.com" maxlength="254" required>
+        </div>
+        <div class="form-status" id="r-status" role="status" aria-live="polite"></div>
+        <button type="submit" class="btn" id="r-btn">Retirar mi autorización</button>
+      </form>
+      <p class="hint">Por seguridad, la respuesta es la misma aunque los datos no coincidan con un registro. Si necesitas confirmación, contáctanos.</p>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="wrap"><div class="footer__bottom"><span>© 2026 EXPO LANDA</span><a href="index.html">Volver al registro</a></div></div></footer>
+  <script src="legal.js" defer></script>
+</body>
+</html>

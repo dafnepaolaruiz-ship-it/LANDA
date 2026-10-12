@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EXPO LANDA · 7 de noviembre de 2026 · Registra tu asistencia gratis</title>
+  <meta name="description" content="EXPO LANDA: recorre tres modelos de vivienda con entrega inmediata, descubre ideas de decoración y recibe asesoría gratuita sobre crédito. 7 de noviembre, Jesús María, Aguascalientes. Entrada gratuita.">
+  <meta name="theme-color" content="#2f3b20">
+  <meta name="landa-api-base" content="">
+  <!-- Open Graph: reemplaza SITIO por el dominio público real antes de publicar (ver README, lista de pendientes) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:title" content="EXPO LANDA · Tu hogar al alcance">
+  <meta property="og:description" content="7 de noviembre de 2026, 10:00 a. m. a 7:00 p. m. · Landa Entorno Residencial, Jesús María, Ags. Entrada gratuita. Registra tu asistencia en menos de dos minutos.">
+  <meta property="og:image" content="https://SITIO-PENDIENTE.example/assets/img/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fachadas de viviendas contemporáneas en Landa Entorno Residencial">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="js-flag.js"></script>
+</head>
+<body>
+  <a class="skip" href="#registro">Ir al registro</a>
+  <div class="notice-bar" id="unconfirmed" hidden>Fecha, horario y datos del evento sujetos a confirmación final de la organizadora.</div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#inicio" aria-label="EXPO LANDA, inicio">EXPO <span>LANDA</span></a>
+      <nav class="nav" aria-label="Principal">
+        <a href="#hogar">El evento</a>
+        <a href="#informacion">Información</a>
+        <a href="#preguntas">Preguntas</a>
+        <a class="btn btn--small" href="#registro">Reservar mi lugar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <!-- 1. Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__text">
+        <div>
+          <p class="eyebrow">EXPO LANDA · Tu hogar al alcance</p>
+          <h1 id="hero-title">Tu hogar, <em>a tu manera.</em></h1>
+          <p class="hero__lead">Descubre espacios, conoce opciones de vivienda y comienza a imaginar tu próximo hogar.</p>
+          <div class="hero__cta">
+            <a class="btn" href="#registro">Reservar mi lugar <span class="arrow" aria-hidden="true">→</span></a>
+            <span class="hero__free">Entrada gratuita</span>
+          </div>
+        </div>
+        <div class="facts" aria-label="Datos del evento">
+          <div><strong>7 noviembre</strong>2026</div>
+          <div><strong>10:00 – 19:00</strong>10:00 a. m. — 7:00 p. m.</div>
+          <div><strong>Landa</strong>Entorno Residencial<br>Jesús María, Ags.</div>
+        </div>
+      </div>
+      <div class="hero__media">
+        <img src="assets/img/landa-exterior.webp" width="960" height="720" alt="Fachadas contemporáneas de color terracota y blanco cálido con celosías de herrería negra y jardín de lavanda, en Landa Entorno Residencial" fetchpriority="high" decoding="async">
+        <div class="hero__tag">Landa Entorno Residencial<em>Jesús María, Aguascalientes</em></div>
+      </div>
+    </section>
+
+    <!-- 2. Descubre tu próximo hogar -->
+    <section class="discover" id="hogar" aria-labelledby="discover-title">
+      <div class="wrap discover__grid">
+        <div class="reveal">
+          <p class="eyebrow"><span class="num">01</span> Tu hogar al alcance</p>
+          <h2 id="discover-title">Descubre tu <em>próximo hogar</em></h2>
+        </div>
+        <div class="reveal" data-d="1">
+          <p>Durante la EXPO LANDA podrás conocer tres modelos de vivienda con entrega inmediata, recorrerlos con calma y descubrir lo fácil que es estrenar casa.</p>
+          <div class="discover__stat"><b>3</b><span>modelos de vivienda<br>con entrega inmediata</span></div>
+        </div>
+      </div>
+      <figure class="wide-photo reveal">
+        <img src="assets/img/landa-exterior.webp" width="960" height="720" alt="Hilera de viviendas con fachadas en tonos terracota y blanco, jardines de grava y senderos de concreto" loading="lazy" decoding="async">
+        <figcaption>Landa Entorno Residencial</figcaption>
+      </figure>
+    </section>
+
+    <!-- 3. Mucho más que una visita -->
+    <section class="more" aria-labelledby="more-title">
+      <div class="wrap">
+        <div class="more__head">
+          <div class="reveal">
+            <p class="eyebrow"><span class="num">02</span> El programa</p>
+            <h2 id="more-title">Mucho más <em>que una visita</em></h2>
+          </div>
+          <p class="reveal" data-d="1">Un día para recorrer, inspirarte y resolver tus dudas sobre cómo llegar a tu casa propia.</p>
+        </div>
+        <div class="more__grid">
+          <article class="more__item more__a reveal">
+            <figure class="fig">
+              <img src="assets/img/landa-sala.webp" width="720" height="960" alt="Sala y comedor de una vivienda muestra, con muros en tono verde grisáceo, mesa de centro de madera y ventanal con cortinas blancas" loading="lazy" decoding="async">
+            </figure>
+            <h3>Recorridos por tres modelos</h3>
+            <p>Entra, camina cada espacio y compruébalo por ti mismo en viviendas con entrega inmediata.</p>
+          </article>
+          <article class="more__item more__b reveal" data-d="1">
+            <figure class="fig">
+              <img src="assets/img/landa-bano.webp" width="720" height="960" alt="Baño de una vivienda muestra con regadera de cristal, repisa de madera y una ilustración enmarcada" loading="lazy" decoding="async">
+            </figure>
+            <h3>Muebles y decoración</h3>
+            <p>Ideas increíbles para vestir cada rincón y empezar a imaginar tu hogar.</p>
+          </article>
+          <article class="more__item more__c reveal">
+            <span class="big" aria-hidden="true">03</span>
+            <h3>Asesoría gratuita de crédito</h3>
+            <p>Conversa con especialistas sobre las opciones de crédito para vivienda. Sin costo y sin compromiso. Además, habrá sorpresas y regalos para los asistentes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Información del evento -->
+    <section class="info" id="informacion" aria-labelledby="info-title">
+      <div class="wrap">
+        <div class="info__head reveal">
+          <div>
+            <p class="eyebrow"><span class="num">03</span> Información</p>
+            <h2 id="info-title">Lo que necesitas <em>saber</em></h2>
+          </div>
+          <a class="btn btn--ghost" id="maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=Landa+Entorno+Residencial%2C+Blvd.+El+Chichimeco%2C+Jes%C3%BAs+Mar%C3%ADa%2C+Aguascalientes" target="_blank" rel="noopener noreferrer">Abrir en Google Maps <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <dl class="info__list reveal">
+          <div><dt>Fecha</dt><dd>Sábado<br>7 de noviembre de 2026</dd></div>
+          <div><dt>Horario</dt><dd>10:00 a. m.<br>a 7:00 p. m.</dd></div>
+          <div><dt>Ubicación</dt><dd>Landa Entorno Residencial<small>Blvd. El Chichimeco, a un minuto del Parque Industrial, Jesús María, Aguascalientes.</small></dd></div>
+          <div><dt>Entrada</dt><dd>Gratuita<small>Organiza y contacto: Mayte Ramírez, 449 348 1867.</small></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 5. Registro -->
+    <section class="register" id="registro" aria-labelledby="reg-title">
+      <div class="wrap register__grid">
+        <div class="register__intro reveal">
+          <p class="eyebrow"><span class="num">04</span> Registro</p>
+          <h2 id="reg-title">Registra tu <em>asistencia gratis</em></h2>
+          <p>Completa tu registro en menos de dos minutos e indica cuántas personas asistirán contigo.</p>
+          <div class="privacy-sum">
+            <strong>Resumen del aviso de privacidad</strong>
+            Usaremos tus datos para gestionar tu registro, coordinar tu asistencia y atender consultas sobre la EXPO LANDA. La publicidad es opcional y la autorizas por separado. Puedes ejercer tus derechos de acceso, rectificación, cancelación y oposición. Consulta el <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad integral</a>.
+          </div>
+        </div>
+
+        <div class="panel reveal" data-d="1" id="panel">
+          <form id="reg-form" novalidate autocomplete="on" aria-describedby="form-status">
+            <div class="form-grid">
+              <div class="field field--full" data-field="full_name">
+                <label for="full_name">Nombre completo</label>
+                <input type="text" id="full_name" name="full_name" autocomplete="name" placeholder="Nombre y apellidos" maxlength="120" required aria-describedby="err-full_name">
+                <span class="error-msg" id="err-full_name" aria-live="polite"></span>
+              </div>
+              <div class="field" data-field="phone">
+                <label for="phone">Número de celular</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="449 123 4567" maxlength="25" required aria-describedby="hint-phone err-phone">
+                <span class="hint" id="hint-phone">10 dígitos; puedes escribir +52.</span>
+                <span class="error-msg" id="err-phone" aria-live="polite"></span>
+              </div>
+              <div class="field" data-field="email">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="nombre@correo.com" maxlength="254" required aria-describedby="err-email">
+                <span class="error-msg" id="err-email" aria-live="polite"></span>
+              </div>
+              <div class="field" data-field="attendees">
+                <span class="label" id="lbl-att">Total de asistentes</span>
+                <div class="stepper" role="group" aria-labelledby="lbl-att">
+                  <button type="button" id="att-minus" aria-label="Quitar una persona" aria-controls="attendees">−</button>
+                  <input type="number" id="attendees" name="attendees" min="1" max="10" step="1" value="1" inputmode="numeric" aria-describedby="hint-att err-attendees" required>
+                  <button type="button" id="att-plus" aria-label="Agregar una persona" aria-controls="attendees">+</button>
+                </div>
+                <span class="hint" id="hint-att">Incluyéndote a ti. No necesitamos los datos de tus acompañantes.</span>
+                <span class="error-msg" id="err-attendees" aria-live="polite"></span>
+              </div>
+              <div class="field" data-field="arrival_window">
+                <label for="arrival_window">Horario aproximado de llegada <span class="opt">(opcional)</span></label>
+                <select id="arrival_window" name="arrival_window" aria-describedby="hint-arrival">
+                  <option value="">Selecciona una opción</option>
+                  <option value="10-12">10:00 a. m. – 12:00 p. m.</option>
+                  <option value="12-15">12:00 p. m. – 3:00 p. m.</option>
+                  <option value="15-17">3:00 p. m. – 5:00 p. m.</option>
+                  <option value="17-19">5:00 p. m. – 7:00 p. m.</option>
+                  <option value="unknown">Aún no lo sé</option>
+                </select>
+                <span class="hint" id="hint-arrival">Es orientativo; no representa una cita reservada.</span>
+              </div>
+
+              <!-- Honeypot: invisible para personas; los bots suelen llenarlo -->
+              <div class="honey" aria-hidden="true"><label>No llenes este campo<input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+              <div class="field--full consents">
+                <label class="check" id="chk-privacy" data-field="privacy_accepted">
+                  <input type="checkbox" id="privacy_accepted" name="privacy_accepted" required aria-describedby="err-privacy_accepted">
+                  <span>He leído el <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a> y otorgo el consentimiento que corresponda para el tratamiento de mis datos personales con la finalidad de gestionar mi registro, coordinar mi asistencia y atender consultas relacionadas con la EXPO LANDA, conforme a dicho aviso.</span>
+                </label>
+                <span class="error-msg" id="err-privacy_accepted" aria-live="polite"></span>
+                <label class="check">
+                  <input type="checkbox" id="marketing_opt_in" name="marketing_opt_in">
+                  <span><strong>Opcional.</strong> Autorizo que me envíen comunicaciones comerciales sobre viviendas, promociones y futuros eventos por WhatsApp, llamada o correo electrónico. Puedo registrarme sin aceptar y retirar esta autorización cuando quiera.</span>
+                </label>
+              </div>
+
+              <div class="field--full captcha-box" id="captcha-box" hidden></div>
+
+              <div class="field--full form-actions">
+                <div class="form-status" id="form-status" role="alert" aria-live="assertive"></div>
+                <button class="btn" type="submit" id="submit-btn"><span id="submit-label">Confirmar mi asistencia</span> <span class="arrow" aria-hidden="true">→</span></button>
+                <p class="form-note">Registrar tu asistencia no equivale a una reserva de capacidad. Cualquier condición de acceso será confirmada por la organizadora.</p>
+              </div>
+            </div>
+          </form>
+
+          <!-- Confirmación (solo se muestra cuando el servidor confirma el guardado) -->
+          <div class="confirm" id="confirm" hidden tabindex="-1" aria-labelledby="confirm-title">
+            <p class="eyebrow">Registro recibido</p>
+            <h2 id="confirm-title">¡Tu lugar para la EXPO LANDA está <em>registrado!</em></h2>
+            <div class="confirm__folio">
+              <div><small>Tu folio</small><output id="c-folio" aria-live="polite"></output></div>
+              <button type="button" class="btn btn--ghost btn--small" id="copy-folio">Copiar folio</button>
+            </div>
+            <dl class="confirm__dl">
+              <div><dt>Fecha</dt><dd>Sábado 7 de noviembre de 2026</dd></div>
+              <div><dt>Horario</dt><dd>10:00 a. m. a 7:00 p. m.</dd></div>
+              <div><dt>Ubicación</dt><dd>Landa Entorno Residencial, Blvd. El Chichimeco, a un minuto del Parque Industrial, Jesús María, Aguascalientes</dd></div>
+              <div><dt>Asistentes</dt><dd id="c-attendees"></dd></div>
+              <div><dt>A nombre de</dt><dd id="c-name"></dd></div>
+              <div><dt>Contacto</dt><dd id="c-contact"></dd></div>
+            </dl>
+            <div class="confirm__actions">
+              <button type="button" class="btn btn--small" id="add-calendar">Agregar al calendario</button>
+              <a class="btn btn--small btn--ghost" id="c-maps" href="#" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
+              <a class="btn btn--small btn--ghost" id="c-wa" href="#" target="_blank" rel="noopener noreferrer">WhatsApp con Mayte</a>
+            </div>
+            <p class="confirm__caveat">Guarda tu folio. Tu registro indica que planeas asistir y cuántas personas serán; no es una reserva de capacidad ni una cita. Estos datos solo se muestran en esta pantalla y no se publican.</p>
+            <button type="button" class="btn btn--ghost btn--small" id="new-registration">Registrar a otra persona</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Preguntas frecuentes -->
+    <section class="faq" id="preguntas" aria-labelledby="faq-title">
+      <div class="wrap faq__grid">
+        <div class="reveal">
+          <p class="eyebrow"><span class="num">05</span> Preguntas</p>
+          <h2 id="faq-title">Preguntas <em>frecuentes</em></h2>
+        </div>
+        <div class="reveal" data-d="1">
+          <details><summary>¿La entrada tiene costo?</summary><div class="ans"><p>No. La entrada a la EXPO LANDA es gratuita.</p></div></details>
+          <details><summary>¿Puedo asistir con mi familia?</summary><div class="ans"><p>Sí. Al registrarte indica cuántas personas asistirán contigo, incluyéndote a ti. No necesitamos los datos de tus acompañantes.</p></div></details>
+          <details><summary>¿Necesito registrarme antes de acudir?</summary><div class="ans"><p>Te recomendamos registrarte para facilitar la organización del evento. Si tienes dudas sobre el acceso sin registro previo, comunícate con Mayte Ramírez al 449 348 1867: esa condición debe ser confirmada por la organizadora.</p></div></details>
+          <details><summary>¿Mi registro es una reserva?</summary><div class="ans"><p>Tu registro nos indica que planeas asistir y cuántas personas serán. No es una cita ni una reserva de capacidad. Si la organizadora define condiciones adicionales de acceso, te las comunicará.</p></div></details>
+          <details><summary>¿Qué actividades habrá?</summary><div class="ans"><ul><li>Recorridos por tres modelos de vivienda con entrega inmediata.</li><li>Ideas de muebles y decoración.</li><li>Asesoría gratuita sobre opciones de crédito para vivienda.</li><li>Sorpresas y regalos para los asistentes.</li></ul></div></details>
+          <details><summary>¿Dónde se encuentra el desarrollo?</summary><div class="ans"><p>Landa Entorno Residencial, Blvd. El Chichimeco, a un minuto del Parque Industrial, Jesús María, Aguascalientes. <a href="https://www.google.com/maps/search/?api=1&amp;query=Landa+Entorno+Residencial%2C+Blvd.+El+Chichimeco%2C+Jes%C3%BAs+Mar%C3%ADa%2C+Aguascalientes" target="_blank" rel="noopener noreferrer">Abrir en Google Maps</a>.</p></div></details>
+          <details><summary>¿Cómo puedo solicitar más información?</summary><div class="ans"><p>Escríbele o llama a Mayte Ramírez al <a href="tel:+524493481867">449 348 1867</a>, o <a href="https://wa.me/524493481867?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20EXPO%20LANDA." target="_blank" rel="noopener noreferrer">envía un mensaje por WhatsApp</a>.</p></div></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 7. Contacto y pie -->
+  <footer class="footer" id="contacto">
+    <div class="wrap">
+      <div class="footer__top">
+        <div><h2>EXPO <em>LANDA</em></h2><p>Tu hogar al alcance.</p></div>
+        <div>
+          <h3>Contacto</h3>
+          <p>Mayte Ramírez<br><a href="tel:+524493481867">449 348 1867</a></p>
+          <p>Landa Entorno Residencial<br>Jesús María, Aguascalientes</p>
+        </div>
+        <div>
+          <h3>Privacidad</h3>
+          <ul>
+            <li><a href="aviso-privacidad.html">Aviso de Privacidad integral</a></li>
+            <li><a href="derechos.html">Derechos ARCO y revocación del consentimiento</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom"><span>© 2026 EXPO LANDA. Todos los derechos reservados.</span><span>7 de noviembre de 2026 · Entrada gratuita</span></div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

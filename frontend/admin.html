@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Panel · EXPO LANDA</title>
+  <meta name="landa-api-base" content="">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+  <script src="js-flag.js"></script>
+</head>
+<body class="admin">
+  <!-- Acceso -->
+  <main id="login-view" class="login" hidden>
+    <div class="login__box">
+      <p class="eyebrow">Acceso privado</p>
+      <h1>Panel <em>EXPO LANDA</em></h1>
+      <form id="login-form" novalidate>
+        <div class="field"><label for="l-user">Usuario</label><input type="text" id="l-user" autocomplete="username" maxlength="60" required></div>
+        <div class="field"><label for="l-pass">Contraseña</label><input type="password" id="l-pass" autocomplete="current-password" maxlength="256" required></div>
+        <div class="form-status" id="login-status" role="alert"></div>
+        <button class="btn" type="submit" id="login-btn">Entrar</button>
+      </form>
+      <p class="hint">Solo personal autorizado. Las acciones quedan registradas en la bitácora.</p>
+    </div>
+  </main>
+
+  <!-- Panel -->
+  <div id="app-view" hidden>
+    <header class="admin-bar">
+      <div class="abar">
+        <span class="brand">EXPO <span>LANDA</span> <small>panel</small></span>
+        <div class="abar__right">
+          <span id="who" class="who"></span>
+          <button type="button" class="btn btn--small btn--ghost" id="btn-pass">Contraseña</button>
+          <button type="button" class="btn btn--small btn--ghost" id="btn-logout">Cerrar sesión</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="abar-main">
+      <div id="banners"></div>
+
+      <section aria-labelledby="h-resumen">
+        <h2 id="h-resumen" class="sr-only">Resumen</h2>
+        <div class="stats" id="stats">
+          <div class="stat"><span class="stat__n" id="s-total">–</span><span class="stat__l">Registros</span></div>
+          <div class="stat stat--accent"><span class="stat__n" id="s-att">–</span><span class="stat__l">Asistentes estimados</span></div>
+          <div class="stat"><span class="stat__n" id="s-pending">–</span><span class="stat__l">Pendientes</span></div>
+          <div class="stat"><span class="stat__n" id="s-confirmed">–</span><span class="stat__l">Confirmados</span></div>
+          <div class="stat"><span class="stat__n" id="s-cancelled">–</span><span class="stat__l">Cancelados</span></div>
+        </div>
+        <p class="hint" id="s-criterion"></p>
+      </section>
+
+      <nav class="tabs" aria-label="Secciones">
+        <button type="button" class="tab" id="tab-reg" aria-pressed="true">Registros</button>
+        <button type="button" class="tab" id="tab-audit" aria-pressed="false">Bitácora</button>
+      </nav>
+
+      <section id="view-reg" aria-labelledby="h-reg">
+        <div class="toolbar">
+          <h2 id="h-reg">Registros</h2>
+          <button type="button" class="btn" id="btn-export">Exportar registros a Excel</button>
+        </div>
+        <form id="filters" class="filters" novalidate>
+          <div class="field"><label for="f-q">Buscar</label><input type="text" id="f-q" placeholder="Nombre, teléfono, correo o folio" maxlength="100" autocomplete="off"></div>
+          <div class="field"><label for="f-status">Estado</label>
+            <select id="f-status"><option value="">Todos</option><option value="pending">Pendiente</option><option value="confirmed">Confirmado</option><option value="cancelled">Cancelado</option></select></div>
+          <div class="field"><label for="f-from">Desde</label><input type="date" id="f-from"></div>
+          <div class="field"><label for="f-to">Hasta</label><input type="date" id="f-to"></div>
+          <div class="field"><label for="f-min">Asistentes (mín.)</label><input type="number" id="f-min" min="1" max="1000" inputmode="numeric"></div>
+          <div class="field"><label for="f-max">Asistentes (máx.)</label><input type="number" id="f-max" min="1" max="1000" inputmode="numeric"></div>
+          <div class="field"><label for="f-mkt">Publicidad</label>
+            <select id="f-mkt"><option value="">Todas</option><option value="allowed">Autorizada</option><option value="not_allowed">No autorizada</option></select></div>
+          <div class="filters__actions"><button class="btn btn--small" type="submit">Aplicar</button><button class="btn btn--small btn--ghost" type="button" id="f-clear">Limpiar</button></div>
+        </form>
+        <p class="hint" id="result-note" aria-live="polite"></p>
+        <div class="table-wrap">
+          <table class="table">
+            <caption class="sr-only">Registros de asistentes</caption>
+            <thead><tr><th scope="col">Folio</th><th scope="col">Fecha</th><th scope="col">Nombre</th><th scope="col">Teléfono</th><th scope="col">Correo</th><th scope="col" class="r">Pers.</th><th scope="col">Estado</th><th scope="col">Publicidad</th><th scope="col"><span class="sr-only">Detalle</span></th></tr></thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+        <div class="pager"><button class="btn btn--small btn--ghost" id="p-prev" type="button">← Anterior</button><span id="p-info" aria-live="polite"></span><button class="btn btn--small btn--ghost" id="p-next" type="button">Siguiente →</button></div>
+        <div class="form-status ok" id="export-status" role="status"></div>
+      </section>
+
+      <section id="view-audit" aria-labelledby="h-audit" hidden>
+        <div class="toolbar"><h2 id="h-audit">Bitácora de acciones</h2></div>
+        <p class="hint">No contiene datos personales de asistentes, solo folios y acciones.</p>
+        <div class="table-wrap"><table class="table"><caption class="sr-only">Bitácora</caption>
+          <thead><tr><th scope="col">Fecha</th><th scope="col">Usuario</th><th scope="col">Acción</th><th scope="col">Folio</th><th scope="col">Detalle</th></tr></thead>
+          <tbody id="audit-body"></tbody></table></div>
+        <div class="pager"><button class="btn btn--small btn--ghost" id="a-prev" type="button">← Anterior</button><span id="a-info"></span><button class="btn btn--small btn--ghost" id="a-next" type="button">Siguiente →</button></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Detalle -->
+  <dialog id="detail" aria-labelledby="d-title">
+    <div class="dlg">
+      <div class="dlg__head"><h2 id="d-title">Registro</h2><button type="button" class="btn btn--small btn--ghost" id="d-close">Cerrar</button></div>
+      <dl class="kv" id="d-body"></dl>
+      <div id="d-actions" class="d-actions">
+        <div class="field"><label for="d-status">Cambiar estado</label>
+          <div class="row"><select id="d-status"><option value="pending">Pendiente</option><option value="confirmed">Confirmado</option><option value="cancelled">Cancelado</option></select><button type="button" class="btn btn--small" id="d-save">Guardar estado</button></div></div>
+        <button type="button" class="btn btn--small btn--ghost" id="d-revoke">Registrar baja de publicidad</button>
+        <details class="danger"><summary>Privacidad: anonimizar o eliminar</summary>
+          <p class="hint">Anonimizar borra nombre, teléfono y correo pero conserva la cantidad de asistentes para estadística. Eliminar borra el registro por completo. Ambas acciones son irreversibles; documenta el motivo (p. ej. solicitud ARCO).</p>
+          <div class="field"><label for="d-confirm">Escribe el folio para confirmar</label><input type="text" id="d-confirm" autocomplete="off" maxlength="20"></div>
+          <div class="field"><label for="d-reason">Motivo (sin datos personales)</label><input type="text" id="d-reason" maxlength="150" placeholder="Ej. Solicitud ARCO recibida el 10/11/2026"></div>
+          <div class="row"><button type="button" class="btn btn--small btn--ghost" id="d-anon">Anonimizar</button><button type="button" class="btn btn--small btn--danger" id="d-delete">Eliminar definitivamente</button></div>
+        </details>
+      </div>
+      <div class="form-status" id="d-status-msg" role="alert"></div>
+    </div>
+  </dialog>
+
+  <!-- Cambiar contraseña -->
+  <dialog id="pass-dlg" aria-labelledby="pw-title">
+    <form class="dlg" id="pass-form" novalidate>
+      <div class="dlg__head"><h2 id="pw-title">Cambiar contraseña</h2><button type="button" class="btn btn--small btn--ghost" id="pw-close">Cerrar</button></div>
+      <div class="field"><label for="pw-cur">Contraseña actual</label><input type="password" id="pw-cur" autocomplete="current-password" required></div>
+      <div class="field"><label for="pw-new">Contraseña nueva</label><input type="password" id="pw-new" autocomplete="new-password" required><span class="hint">Mínimo 12 caracteres, con letras y números o símbolos.</span></div>
+      <div class="form-status" id="pw-status" role="alert"></div>
+      <button type="submit" class="btn btn--small">Guardar</button>
+    </form>
+  </dialog>
+
+  <script src="admin.js" defer></script>
+</body>
+</html>
