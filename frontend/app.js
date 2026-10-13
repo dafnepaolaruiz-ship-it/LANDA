@@ -317,6 +317,48 @@
     reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
+  // ---------------------------------------------------------------- cuenta regresiva y progreso de lectura
+  var cd = { d: $("cd-d"), h: $("cd-h"), m: $("cd-m"), s: $("cd-s") };
+  if (cd.d) {
+    var target = Date.parse("2026-11-07T10:00:00-06:00");
+    var pad = function (n) { return (n < 10 ? "0" : "") + n; };
+    var tick = function () {
+      var diff = Math.max(0, target - Date.now());
+      if (diff === 0 && $("countdown")) { $("countdown").hidden = true; return; }
+      var s = Math.floor(diff / 1000);
+      cd.d.textContent = Math.floor(s / 86400);
+      cd.h.textContent = pad(Math.floor((s % 86400) / 3600));
+      cd.m.textContent = pad(Math.floor((s % 3600) / 60));
+      cd.s.textContent = pad(s % 60);
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
+  var prog = $("scroll-progress");
+  if (prog) {
+    var updProg = function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.transform = "scaleX(" + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ")";
+    };
+    window.addEventListener("scroll", updProg, { passive: true });
+    updProg();
+  }
+
+  // ---------------------------------------------------------------- barra fija móvil y cabecera
+  var sticky = $("sticky-cta");
+  var panelEl = $("panel");
+  if (sticky && panelEl && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      sticky.classList.toggle("show", !entries[0].isIntersecting);
+    }, { threshold: 0.05 }).observe(panelEl);
+  }
+  var header = document.querySelector(".site-header");
+  if (header) {
+    var onScroll = function () { header.classList.toggle("is-scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
   // ---------------------------------------------------------------- arranque
   loadConfig().catch(function () { /* se reintenta al enviar */ });
   loadToken(false).catch(function () { /* se reintenta al enviar */ });
