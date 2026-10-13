@@ -1201,3 +1201,6 @@ h2::after { background: var(--terra-grad); }
 @media (max-width: 760px) {
   .panel { border-radius: 26px; }
 }
+
+/* Scroll margin para evitar que el header fijo cubra el formulario al hacer click en el botón */
+#registro, .hero-form-col, .form-card-wrapper { scroll-margin-top: 5.5rem; }

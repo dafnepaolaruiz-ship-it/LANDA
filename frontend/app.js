@@ -359,6 +359,28 @@
     onScroll();
   }
 
+  // ---------------------------------------------------------------- navegación suave al formulario
+  document.querySelectorAll('a[href="#registro"]').forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      var target = $("registro") || $("panel") || $("reg-form");
+      if (target) {
+        var headerHeight = 72;
+        var elementPos = target.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: Math.max(0, elementPos - headerHeight),
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+        });
+        var fn = $("full_name");
+        if (fn) {
+          setTimeout(function () {
+            try { fn.focus({ preventScroll: true }); } catch (_) {}
+          }, 600);
+        }
+      }
+    });
+  });
+
   // ---------------------------------------------------------------- arranque
   loadConfig().catch(function () { /* se reintenta al enviar */ });
   loadToken(false).catch(function () { /* se reintenta al enviar */ });
