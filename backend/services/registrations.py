@@ -86,12 +86,18 @@ def create_registration(db: Session, data: RegistrationIn) -> Tuple[Registration
         db.add(reg)
         try:
             db.commit()
+            # Notificación y sincronización en tiempo real
             try:
-                from services.sharepoint_sync import notify_sharepoint_webhook, sync_to_sharepoint_files
-                sync_to_sharepoint_files(db)
+                from services.sharepoint_sync import notify_sharepoint_webhook
                 notify_sharepoint_webhook(reg)
+            except Exception as _wh_err:
+                log.warning("No se pudo disparar el webhook de sincronización: %s", _wh_err)
+
+            try:
+                from services.sharepoint_sync import sync_to_sharepoint_files
+                sync_to_sharepoint_files(db)
             except Exception as _sync_err:
-                log.warning("No se pudo sincronizar a SharePoint en tiempo real: %s", _sync_err)
+                log.warning("No se pudo escribir archivo local de sincronización: %s", _sync_err)
             return reg, False
         except IntegrityError:
             db.rollback()
