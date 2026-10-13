@@ -2,7 +2,11 @@
 from __future__ import annotations
 
 import logging
+import mimetypes
 from pathlib import Path
+
+mimetypes.add_type("image/webp", ".webp")
+mimetypes.add_type("font/woff2", ".woff2")
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError

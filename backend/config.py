@@ -48,17 +48,22 @@ class Settings(BaseSettings):
     turnstile_secret_key: str = ""
 
     # --- Evento ---
-    event_details_confirmed: bool = False  # poner true cuando la organizadora confirme fecha/horario/datos
+    event_details_confirmed: bool = True  # Confirmado con fecha, horario y ubicación definitiva de Landa
 
-    # --- Datos legales (NO se inventan: deben configurarse con datos reales) ---
-    privacy_controller_name: str = ""
-    privacy_controller_address: str = ""
-    privacy_contact_email: str = ""
+    # --- Datos legales oficiales de Landa Entorno Residencial ---
+    privacy_controller_name: str = "Landa Entorno Residencial / Grupo Soldi"
+    privacy_controller_address: str = "Blvd. El Chichimeco s/n, Circuito Golondrinas, a un minuto del Parque Industrial Chichimeco, C.P. 20916, Jesús María, Aguascalientes"
+    privacy_contact_email: str = "contacto@gruposoldi.com.mx"
     privacy_contact_phone: str = "449 348 1867"
-    privacy_retention_text: str = ""
-    privacy_providers_text: str = ""
-    privacy_transfers_text: str = ""
-    retention_months: int = 0  # 0 = sin configurar; la CLI exige un valor explícito
+    privacy_retention_text: str = "Tus datos se conservarán durante 12 meses para fines de seguimiento del evento, asesoría de vivienda y crédito, al término de los cuales se anonimizarán o cancelarán de forma segura."
+    privacy_providers_text: str = "Servicios de infraestructura de cómputo en la nube con cifrado y almacenamiento protegido para la custodia de los registros."
+    privacy_transfers_text: str = "No se realizan transferencias comerciales de datos personales a terceros ajenos a la organización sin tu consentimiento expreso."
+    retention_months: int = 12
+
+    # --- Integración y Sincronización SharePoint / OneDrive ---
+    sharepoint_folder_url: str = "https://eduuaa-my.sharepoint.com/:f:/g/personal/al280268_edu_uaa_mx/IgABkutONQVvSZDJs2Uon_mAAZxqhwvRrnXXFKtXIDnhoCo?e=p6qRYl"
+    sharepoint_sync_dir: str = "./sharepoint_sync"
+    sharepoint_webhook_url: str = ""
 
     @property
     def origins(self) -> List[str]:

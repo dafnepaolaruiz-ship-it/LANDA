@@ -63,7 +63,11 @@
       <section id="view-reg" aria-labelledby="h-reg">
         <div class="toolbar">
           <h2 id="h-reg">Registros</h2>
-          <button type="button" class="btn" id="btn-export">Exportar registros a Excel</button>
+          <div class="toolbar__actions">
+            <a class="btn btn--ghost btn--small" id="btn-sharepoint-folder" href="https://eduuaa-my.sharepoint.com/:f:/g/personal/al280268_edu_uaa_mx/IgABkutONQVvSZDJs2Uon_mAAZxqhwvRrnXXFKtXIDnhoCo?e=p6qRYl" target="_blank" rel="noopener noreferrer">Carpeta SharePoint (REGISTRO LANDA) ↗</a>
+            <button type="button" class="btn btn--ghost btn--small" id="btn-sharepoint-sync">Sincronizar a SharePoint</button>
+            <button type="button" class="btn btn--small" id="btn-export">Exportar a Excel</button>
+          </div>
         </div>
         <form id="filters" class="filters" novalidate>
           <div class="field"><label for="f-q">Buscar</label><input type="text" id="f-q" placeholder="Nombre, teléfono, correo o folio" maxlength="100" autocomplete="off"></div>

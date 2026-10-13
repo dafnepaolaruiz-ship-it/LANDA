@@ -1,4 +1,6 @@
 User-agent: *
-Disallow: /admin
+Allow: /
 Disallow: /admin.html
-Disallow: /api/
+Disallow: /api/admin/
+
+Sitemap: https://expolanda.com/sitemap.xml

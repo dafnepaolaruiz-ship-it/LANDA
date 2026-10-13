@@ -410,5 +410,37 @@ def test_public_config_has_no_secrets(client):
 
 
 def test_privacy_placeholders_when_not_configured(client):
-    c = client.get("/api/config").json()
-    assert c["privacy"]["legal_configured"] is False and "POR CONFIGURAR" in c["privacy"]["controller_name"]
+    from config import Settings, get_settings
+    from main import app
+    dummy = Settings(
+        form_signing_secret="x" * 48,
+        privacy_controller_name="",
+        privacy_controller_address="",
+        privacy_contact_email="",
+        privacy_retention_text="",
+    )
+    app.dependency_overrides[get_settings] = lambda: dummy
+    try:
+        c = client.get("/api/config").json()
+        assert c["privacy"]["legal_configured"] is False and "POR CONFIGURAR" in c["privacy"]["controller_name"]
+    finally:
+        app.dependency_overrides.pop(get_settings, None)
+
+
+def test_privacy_configured_when_settings_provided(client):
+    from config import Settings, get_settings
+    from main import app
+    dummy = Settings(
+        form_signing_secret="x" * 48,
+        privacy_controller_name="Landa Entorno Residencial",
+        privacy_controller_address="Blvd. El Chichimeco s/n",
+        privacy_contact_email="contacto@landa.mx",
+        privacy_retention_text="12 meses",
+    )
+    app.dependency_overrides[get_settings] = lambda: dummy
+    try:
+        c = client.get("/api/config").json()
+        assert c["privacy"]["legal_configured"] is True
+        assert c["privacy"]["controller_name"] == "Landa Entorno Residencial"
+    finally:
+        app.dependency_overrides.pop(get_settings, None)

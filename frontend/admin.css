@@ -32,6 +32,7 @@ body.admin { background: var(--ivory); }
 .tab { font: 600 0.78rem var(--sans); letter-spacing: 0.14em; text-transform: uppercase; background: none; border: 0; padding: 0.9rem 1.2rem; cursor: pointer; color: var(--brown-soft); border-bottom: 2px solid transparent; margin-bottom: -1px; }
 .tab[aria-pressed="true"] { color: var(--brown); border-bottom-color: var(--olive); }
 .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.toolbar__actions { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
 .toolbar h2 { font-size: 2rem; }
 
 .filters { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr; gap: 1rem; align-items: end; margin-bottom: 0.6rem; }

@@ -1,6 +1,7 @@
 """Lógica de negocio de registros: creación idempotente, búsqueda, estadísticas, anonimización."""
 from __future__ import annotations
 
+import logging
 import secrets
 from datetime import datetime, time, timedelta, timezone
 from typing import Optional, Tuple
@@ -13,6 +14,8 @@ from sqlalchemy.orm import Session
 from config import MARKETING_TEXT_VERSION, PRIVACY_NOTICE_VERSION, get_settings
 from models import AuditLog, Registration, utcnow
 from schemas import FiltersIn, RegistrationIn, clean_campaign_part
+
+log = logging.getLogger("landa.registrations")
 
 settings = get_settings()
 MX_TZ = ZoneInfo("America/Mexico_City")
@@ -83,6 +86,12 @@ def create_registration(db: Session, data: RegistrationIn) -> Tuple[Registration
         db.add(reg)
         try:
             db.commit()
+            try:
+                from services.sharepoint_sync import notify_sharepoint_webhook, sync_to_sharepoint_files
+                sync_to_sharepoint_files(db)
+                notify_sharepoint_webhook(reg)
+            except Exception as _sync_err:
+                log.warning("No se pudo sincronizar a SharePoint en tiempo real: %s", _sync_err)
             return reg, False
         except IntegrityError:
             db.rollback()

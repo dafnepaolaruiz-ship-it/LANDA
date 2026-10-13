@@ -54,6 +54,7 @@ def _session_info(ctx: AuthContext) -> dict:
         "idle_minutes": settings.session_idle_minutes,
         "event_details_confirmed": settings.event_details_confirmed,
         "legal_configured": settings.legal_configured,
+        "sharepoint_folder_url": settings.sharepoint_folder_url,
     }
 
 
@@ -246,4 +247,20 @@ def audit_list(page: int = 1, ctx: AuthContext = Depends(auth_read), db: Session
         "page": page,
         "pages": max(1, -(-total // size)),
         "total": total,
+    }
+
+
+@router.post("/sharepoint/sync")
+def sync_sharepoint(ctx: AuthContext = Depends(auth_admin), db: Session = Depends(get_db)):
+    """Sincroniza y actualiza los archivos Excel y CSV para la carpeta de SharePoint / OneDrive."""
+    from services.sharepoint_sync import sync_to_sharepoint_files
+
+    path = sync_to_sharepoint_files(db)
+    svc.audit(db, ctx.user.username, "sharepoint_sync", None, str(path))
+    db.commit()
+    return {
+        "status": "ok",
+        "message": "Archivos actualizados para SharePoint con éxito",
+        "path": str(path),
+        "sharepoint_folder_url": settings.sharepoint_folder_url,
     }

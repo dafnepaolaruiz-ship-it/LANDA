@@ -9,6 +9,9 @@ import os
 import sys
 import time
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 from openpyxl import load_workbook
 from playwright.sync_api import sync_playwright
 
@@ -46,6 +49,8 @@ with sync_playwright() as p:
         page.on("pageerror", lambda e: errors.append(str(e)))
         page.goto(BASE + "/?utm_source=facebook&utm_medium=paid&utm_campaign=expo", wait_until="networkidle")
         page.screenshot(path=os.path.join(OUT, "%s-top.png" % label))
+        page.evaluate("Promise.all(Array.from(document.images).map(img => img.decode ? img.decode().catch(() => {}) : Promise.resolve()))")
+        page.wait_for_timeout(300)
         page.screenshot(path=os.path.join(OUT, "%s-full.png" % label), full_page=True)
         check("[%s] sin errores de consola/CSP" % label, not errors, errors[:3])
         sw = page.evaluate("document.documentElement.scrollWidth")
@@ -142,7 +147,8 @@ with sync_playwright() as p:
     page = ctx.new_page()
     page.goto(BASE + "/aviso-privacidad.html", wait_until="networkidle")
     check("aviso de privacidad accesible", "Aviso de Privacidad" in page.inner_text("h1"))
-    check("aviso marca datos pendientes", page.locator(".pending").count() > 0 and page.locator("#draft-banner").is_visible())
+    has_banner = page.locator("#draft-banner").is_visible()
+    check("aviso de privacidad refleja estado legal", (has_banner and page.locator(".pending").count() > 0) or (not has_banner and "Landa" in page.inner_text("main")))
     page.screenshot(path=os.path.join(OUT, "privacy.png"), full_page=True)
     page.goto(BASE + "/derechos.html", wait_until="networkidle")
     page.fill("#r-folio", folio); page.fill("#r-email", "laura@example.com")

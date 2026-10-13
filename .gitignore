@@ -30,6 +30,7 @@ landa_dev.db
 *.xlsx
 *.csv
 e2e_out/
+e2e_artifacts/
 exports/
 
 # IDEs y SO

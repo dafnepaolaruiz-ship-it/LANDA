@@ -178,6 +178,25 @@
       .then(function () { btn.disabled = false; });
   });
 
+  var syncBtn = $("btn-sharepoint-sync");
+  if (syncBtn) {
+    syncBtn.addEventListener("click", function () {
+      var btn = this, st = $("export-status");
+      btn.disabled = true;
+      st.textContent = "Sincronizando registros con SharePoint…";
+      api("/api/admin/sharepoint/sync", "POST")
+        .then(function (r) {
+          if (r.ok) {
+            st.textContent = "✓ Sincronización exitosa: Archivos REGISTRO_LANDA.xlsx y CSV actualizados en tiempo real para tu carpeta de SharePoint.";
+          } else {
+            st.textContent = (r.data && r.data.detail) || "No se pudo sincronizar a SharePoint.";
+          }
+        })
+        .catch(function () { st.textContent = "Error de conexión al sincronizar."; })
+        .then(function () { btn.disabled = false; });
+    });
+  }
+
   // ---------------------------------------------------------------- detalle
   function kv(dl, k, v) { dl.appendChild(el("dt", { text: k })); dl.appendChild(el("dd", { text: v == null || v === "" ? "—" : String(v) })); }
 

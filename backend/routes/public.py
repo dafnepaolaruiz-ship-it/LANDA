@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from config import MARKETING_TEXT_VERSION, PRIVACY_NOTICE_VERSION, PRIVACY_PLACEHOLDER, get_settings
+from config import MARKETING_TEXT_VERSION, PRIVACY_NOTICE_VERSION, PRIVACY_PLACEHOLDER, Settings, get_settings
 from database import get_db
 from models import Registration
 from schemas import FOLIO_RE, RegistrationIn, RegistrationOut, RevocationIn, iso
@@ -24,24 +24,24 @@ def health():
 
 
 @router.get("/config")
-def public_config():
+def public_config(s: Settings = Depends(get_settings)):
     """Configuración pública. No contiene secretos."""
     ph = PRIVACY_PLACEHOLDER
     return {
-        "max_attendees": settings.max_attendees,
+        "max_attendees": s.max_attendees,
         "privacy_version": PRIVACY_NOTICE_VERSION,
         "marketing_text_version": MARKETING_TEXT_VERSION,
-        "event_details_confirmed": settings.event_details_confirmed,
-        "turnstile_site_key": settings.turnstile_site_key or None,
+        "event_details_confirmed": s.event_details_confirmed,
+        "turnstile_site_key": s.turnstile_site_key or None,
         "privacy": {
-            "controller_name": settings.privacy_controller_name or ph,
-            "controller_address": settings.privacy_controller_address or ph,
-            "contact_email": settings.privacy_contact_email or ph,
-            "contact_phone": settings.privacy_contact_phone or ph,
-            "retention_text": settings.privacy_retention_text or ph,
-            "providers_text": settings.privacy_providers_text or ph,
-            "transfers_text": settings.privacy_transfers_text or "",
-            "legal_configured": settings.legal_configured,
+            "controller_name": s.privacy_controller_name or ph,
+            "controller_address": s.privacy_controller_address or ph,
+            "contact_email": s.privacy_contact_email or ph,
+            "contact_phone": s.privacy_contact_phone or ph,
+            "retention_text": s.privacy_retention_text or ph,
+            "providers_text": s.privacy_providers_text or ph,
+            "transfers_text": s.privacy_transfers_text or "",
+            "legal_configured": s.legal_configured,
         },
     }
 
