@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.py"
+    },
+    {
+      "source": "/admin",
+      "destination": "/frontend/admin.html"
+    },
+    {
+      "source": "/aviso-privacidad",
+      "destination": "/frontend/aviso-privacidad.html"
+    },
+    {
+      "source": "/derechos",
+      "destination": "/frontend/derechos.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/frontend/$1"
+    }
+  ]
+}

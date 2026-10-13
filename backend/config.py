@@ -30,6 +30,8 @@ class Settings(BaseSettings):
     max_body_bytes: int = 16384
 
     # --- Sesiones y login administrativo ---
+    admin_initial_username: str = ""
+    admin_initial_password: str = ""
     session_idle_minutes: int = 30
     session_absolute_hours: int = 8
     login_max_failures: int = 5

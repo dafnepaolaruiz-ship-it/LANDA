@@ -31,10 +31,28 @@ app = FastAPI(
     openapi_url=None if settings.is_production else "/api/openapi.json",
 )
 
-if settings.auto_create_tables and not settings.is_production:
+if settings.auto_create_tables:
     import models  # noqa: F401
 
     Base.metadata.create_all(engine)
+
+    if settings.admin_initial_username and settings.admin_initial_password:
+        import auth
+        from database import SessionLocal
+        from models import AdminUser, utcnow
+
+        with SessionLocal() as _db:
+            _u_clean = settings.admin_initial_username.strip().lower()
+            _existing = _db.query(AdminUser).filter(AdminUser.username == _u_clean).first()
+            if not _existing and len(settings.admin_initial_password) >= 8:
+                _db.add(AdminUser(
+                    username=_u_clean,
+                    password_hash=auth.hash_password(settings.admin_initial_password),
+                    role="admin",
+                    password_changed_at=utcnow(),
+                ))
+                _db.commit()
+                log.info("Usuario administrador inicial asegurado: %s", _u_clean)
 
 if not settings.event_details_confirmed:
     log.warning("EVENT_DETAILS_CONFIRMED=false: fecha, horario y datos del evento aún NO confirmados.")
