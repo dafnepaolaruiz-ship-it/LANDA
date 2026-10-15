@@ -235,6 +235,17 @@
     $("confirm").hidden = false;
     state.idemKey = null;
     state.token = null;
+
+    // Meta Pixel: rastreo de conversión oficial al completar el registro
+    if (typeof window.fbq === "function") {
+      try {
+        window.fbq("track", "CompleteRegistration", { content_name: "EXPO LANDA 2026", status: data.status || "pending" });
+        window.fbq("track", "Lead", { content_name: "EXPO LANDA 2026" });
+      } catch (err) {
+        console.warn("Meta Pixel event error:", err);
+      }
+    }
+
     $("panel").scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
     $("confirm").focus({ preventScroll: true });
   }

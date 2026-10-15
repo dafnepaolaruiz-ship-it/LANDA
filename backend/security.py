@@ -119,9 +119,9 @@ def verify_turnstile(token: Optional[str], ip: str) -> bool:
 def security_headers(path: str) -> Dict[str, str]:
     csp = (
         "default-src 'self'; "
-        "script-src 'self' https://challenges.cloudflare.com; "
-        "style-src 'self'; img-src 'self' data:; font-src 'self'; "
-        "connect-src 'self'; frame-src https://challenges.cloudflare.com; "
+        "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://connect.facebook.net; "
+        "style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.facebook.com; font-src 'self'; "
+        "connect-src 'self' https://connect.facebook.net https://www.facebook.com; frame-src https://challenges.cloudflare.com; "
         "object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
     )
     h = {
